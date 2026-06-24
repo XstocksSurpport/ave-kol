@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KOL 认证申请表 · AVE.AI</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --text-secondary: #6b7280;
+      --border: #e5e7eb;
+      --border-focus: #7c3aed;
+      --accent-start: #06b6d4;
+      --accent-end: #7c3aed;
+      --section-bg: #fafafa;
+      --radius: 10px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .logo {
+      width: 72px;
+      height: 72px;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .header p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 36px;
+    }
+
+    .section-title {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title .icon {
+      font-size: 1rem;
+    }
+
+    /* Fields */
+    .field {
+      margin-bottom: 16px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .field input[type="text"],
+    .field input[type="email"],
+    .field input[type="number"],
+    .field input[type="url"],
+    .field textarea {
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 0.9375rem;
+      font-family: inherit;
+      color: var(--text);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08);
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 72px;
+    }
+
+    /* Checkboxes & Radios */
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9375rem;
+      cursor: pointer;
+    }
+
+    .option input[type="checkbox"],
+    .option input[type="radio"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--accent-end);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .option-inline {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .option-inline input[type="text"] {
+      flex: 1;
+      padding: 8px 12px;
+      font-size: 0.875rem;
+      font-family: inherit;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      outline: none;
+    }
+
+    .option-inline input[type="text"]:focus {
+      border-color: var(--border-focus);
+    }
+
+    .sub-options {
+      margin-left: 26px;
+      margin-top: 4px;
+    }
+
+    /* Payment */
+    .payment-box {
+      background: var(--section-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+
+    .payment-amount {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .payment-amount span {
+      background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .payment-note {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .address-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px 14px;
+      margin-bottom: 16px;
+    }
+
+    .address-box code {
+      flex: 1;
+      font-size: 0.75rem;
+      word-break: break-all;
+      color: var(--text);
+      font-family: "SF Mono", "Cascadia Code", Consolas, monospace;
+    }
+
+    .copy-btn {
+      flex-shrink: 0;
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      font-family: inherit;
+      color: var(--accent-end);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .copy-btn:hover {
+      background: rgba(124, 58, 237, 0.06);
+    }
+
+    /* File upload */
+    .upload-area {
+      position: relative;
+      border: 1.5px dashed var(--border);
+      border-radius: var(--radius);
+      padding: 28px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .upload-area:hover {
+      border-color: var(--accent-end);
+      background: rgba(124, 58, 237, 0.02);
+    }
+
+    .upload-area input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .upload-area .upload-text {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .upload-area .upload-text strong {
+      color: var(--accent-end);
+      font-weight: 500;
+    }
+
+    .preview-img {
+      max-width: 100%;
+      max-height: 200px;
+      margin-top: 12px;
+      border-radius: 8px;
+      display: none;
+    }
+
+    /* Declaration */
+    .declaration {
+      padding: 16px;
+      background: var(--section-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+
+    /* Submit */
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      margin-top: 32px;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: inherit;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+
+    .submit-btn:hover {
+      opacity: 0.92;
+    }
+
+    .submit-btn:active {
+      transform: scale(0.99);
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 0 36px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 480px) {
+      .page { padding: 32px 16px 60px; }
+      .header h1 { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <img src="assets/logo.png" alt="AVE.AI" class="logo" />
+      <h1>KOL 认证申请表</h1>
+      <p>AVE.AI Key Opinion Leader Certification</p>
+    </header>
+
+    <form id="kolForm" onsubmit="return handleSubmit(event)">
+
+      <!-- 基本信息 -->
+      <section class="section">
+        <h2 class="section-title"><span class="icon">🧾</span> 基本信息</h2>
+        <div class="field">
+          <label for="twitter">Twitter 账号（@）</label>
+          <input type="text" id="twitter" name="twitter" placeholder="@username" required />
+        </div>
+        <div class="field">
+          <label for="telegram">Telegram</label>
+          <input type="text" id="telegram" name="telegram" placeholder="@username 或 t.me/..." required />
+        </div>
+        <div class="field">
+          <label for="email">邮箱</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required />
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- 账号数据 -->
+      <section class="section">
+        <h2 class="section-title"><span class="icon">📊</span> 账号数据</h2>
+        <div class="field">
+          <label for="followers">粉丝数</label>
+          <input type="text" id="followers" name="followers" placeholder="例如：50,000" required />
+        </div>
+        <div class="field">
+          <label for="avgViews">平均浏览量</label>
+          <input type="text" id="avgViews" name="avgViews" placeholder="例如：10,000" required />
+        </div>
+        <div class="field">
+          <label for="avgEngagement">平均互动（点赞/评论）</label>
+          <input type="text" id="avgEngagement" name="avgEngagement" placeholder="例如：500" required />
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- 内容方向 -->
+      <section class="section">
+        <h2 class="section-title"><span class="icon">🧠</span> 内容方向</h2>
+        <p style="font-size:0.8125rem;color:var(--text-secondary);margin-bottom:12px;">你主要做什么内容：</p>
+        <div class="options">
+          <label class="option"><input type="checkbox" name="content" value="币圈资讯" /> 币圈资讯</label>
+          <label class="option"><input type="checkbox" name="content" value="Meme / 热点币" /> Meme / 热点币</label>
+          <label class="option"><input type="checkbox" name="content" value="Solana / 链上交易" /> Solana / 链上交易</label>
+          <label class="option"><input type="checkbox" name="content" value="聪明钱 / 数据分析" /> 聪明钱 / 数据分析</label>
+          <label class="option"><input type="checkbox" name="content" value="教学 / 科普" /> 教学 / 科普</label>
+          <label class="option option-inline">
+            <input type="checkbox" name="content" value="其他" id="contentOther" />
+            其他：
+            <input type="text" name="contentOtherText" placeholder="请说明" />
+          </label>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- 影响力说明 -->
+      <section class="section">
+        <h2 class="section-title"><span class="icon">✨</span> 影响力说明</h2>
+        <div class="field">
+          <label for="audience">你主要受众是谁（一句话）</label>
+          <input type="text" id="audience" name="audience" placeholder="例如：关注 Solana 生态的活跃交易者" required />
+        </div>
+        <div class="field">
+          <label for="advantage">你内容的核心优势（一句话）</label>
+          <input type="text" id="advantage" name="advantage" placeholder="例如：链上数据解读快、观点独到" required />
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- 作品链接 -->
+      <section class="section">
+        <h2 class="section-title"><span class="icon">📎</span> 作品链接</h2>
+        <div class="field">
+          <label for="tweetLink">近期代表推文 / Thread</label>
+          <input type="url" id="tweetLink" name="tweetLink" placeholder="https://x.com/..." required />
+        </div>
+        <div class="field">
+          <label for="videoLink">视频 / 长内容（可选）</label>
+          <input type="url" id="videoLink" name="videoLink" placeholder="https://..." />
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- 合作历史 -->
+      <section class="section">
+        <h2 class="section-title"><span class="icon">🤝</span> 合作历史</h2>
+        <div class="field">
+          <label>是否做过 KOL 合作</label>
+          <div class="options">
+            <label class="option"><input type="radio" name="kolHistory" value="是" /> 是</label>
+            <label class="option"><input type="radio" name="kolHistory" value="否" checked /> 否</label>
+          </div>
+        </div>
+        <div class="field">
+          <label for="kolProjects">如有，请列项目</label>
+          <textarea id="kolProjects" name="kolProjects" placeholder="项目名称及合作内容"></textarea>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- 使用情况 -->
+      <section class="section">
+        <h2 class="section-title"><span class="icon">📱</span> 使用情况</h2>
+        <div class="field">
+          <label>是否使用 AVE.AI</label>
+          <div class="options">
+            <label class="option"><input type="radio" name="aveUsage" value="经常用" /> 经常用</label>
+            <label class="option"><input type="radio" name="aveUsage" value="偶尔用" /> 偶尔用</label>
+            <label class="option"><input type="radio" name="aveUsage" value="没用过" /> 没用过</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>常用功能</label>
+          <div class="options">
+            <label class="option"><input type="checkbox" name="features" value="聪明钱" /> 聪明钱</label>
+            <label class="option"><input type="checkbox" name="features" value="新币监控" /> 新币监控</label>
+            <label class="option"><input type="checkbox" name="features" value="看盘工具" /> 看盘工具</label>
+          </div>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- 认证用途 -->
+      <section class="section">
+        <h2 class="section-title"><span class="icon">🧩</span> 认证用途</h2>
+        <p style="font-size:0.8125rem;color:var(--text-secondary);margin-bottom:12px;">你希望获得：</p>
+        <div class="options">
+          <label class="option"><input type="checkbox" name="purpose" value="官方KOL认证标识" /> 官方 KOL 认证标识</label>
+          <label class="option"><input type="checkbox" name="purpose" value="数据权限/工具支持" /> 数据权限 / 工具支持</label>
+          <label class="option"><input type="checkbox" name="purpose" value="社区/活动合作" /> 社区 / 活动合作</label>
+          <label class="option option-inline">
+            <input type="checkbox" name="purpose" value="其他" />
+            其他：
+            <input type="text" name="purposeOtherText" placeholder="请说明" />
+          </label>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- 支付 -->
+      <section class="section">
+        <h2 class="section-title"><span class="icon">💰</span> 申请费用</h2>
+        <div class="payment-box">
+          <div class="payment-amount">申请费用：<span>158 USDT</span></div>
+          <p class="payment-note">请使用 BNB 网络（BEP-20）支付</p>
+          <div class="address-box">
+            <code id="payAddress">0x816b6d8b6e5e85fac5e185bb3c4c70c3daf246cc</code>
+            <button type="button" class="copy-btn" onclick="copyAddress()">复制</button>
+          </div>
+          <div class="field" style="margin-bottom:12px;">
+            <label for="txHash">支付哈希（Tx Hash）</label>
+            <input type="text" id="txHash" name="txHash" placeholder="0x..." required />
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label>上传支付截图</label>
+            <div class="upload-area" id="uploadArea">
+              <input type="file" id="paymentScreenshot" name="paymentScreenshot" accept="image/*" required onchange="previewImage(this)" />
+              <div class="upload-text">点击或拖拽上传 <strong>支付截图</strong></div>
+              <img id="previewImg" class="preview-img" alt="预览" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- 声明 -->
+      <section class="section">
+        <h2 class="section-title"><span class="icon">✅</span> 声明</h2>
+        <div class="declaration">
+          <label class="option">
+            <input type="checkbox" name="declaration" required />
+            信息真实有效，接受平台审核结果
+          </label>
+        </div>
+      </section>
+
+      <button type="submit" class="submit-btn">提交申请</button>
+    </form>
+
+    <footer class="footer">© AVE.AI · KOL Certification Program</footer>
+  </div>
+
+  <script>
+    function copyAddress() {
+      const addr = document.getElementById('payAddress').textContent;
+      navigator.clipboard.writeText(addr).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent = '已复制';
+        setTimeout(() => { btn.textContent = '复制'; }, 2000);
+      });
+    }
+
+    function previewImage(input) {
+      const preview = document.getElementById('previewImg');
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      alert('申请已提交！我们会尽快审核并与您联系。');
+      return false;
+    }
+  </script>
+</body>
+</html>
