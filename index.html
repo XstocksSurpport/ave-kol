@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KOL 认证申请表 · AVE.AI</title>
+  <title>钱包地址认证申请表 · AVE.AI</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -328,8 +328,8 @@
   <div class="page">
     <header class="header">
       <img src="assets/logo.png" alt="AVE.AI" class="logo" />
-      <h1>KOL 认证申请表</h1>
-      <p>AVE.AI Key Opinion Leader Certification</p>
+      <h1>钱包地址认证申请表</h1>
+      <p>AVE.AI Wallet Address Certification</p>
     </header>
 
     <form id="kolForm" onsubmit="return handleSubmit(event)">
@@ -337,6 +337,10 @@
       <!-- 基本信息 -->
       <section class="section">
         <h2 class="section-title"><span class="icon">🧾</span> 基本信息</h2>
+        <div class="field">
+          <label for="walletAddress">认证钱包地址</label>
+          <input type="text" id="walletAddress" name="walletAddress" placeholder="0x..." required />
+        </div>
         <div class="field">
           <label for="twitter">Twitter 账号（@）</label>
           <input type="text" id="twitter" name="twitter" placeholder="@username" required />
@@ -522,7 +526,7 @@
       <button type="submit" class="submit-btn">提交申请</button>
     </form>
 
-    <footer class="footer">© AVE.AI · KOL Certification Program</footer>
+    <footer class="footer">© AVE.AI · Wallet Address Certification</footer>
   </div>
 
   <script>
